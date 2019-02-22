@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/findall}" th:object="${sq}" th:method="post">
+    <div >
+        <label >name</label>
+        <div >
+            <input type="text"  id="name" placeholder="请输入名称" th:field="*{name}"/>
+        </div>
+        <label >age</label>
+        <div >
+            <input type="text"  id="age" placeholder="请输入年龄" th:field="*{age}"/>
+        </div>
+        <div >
+            <button type="submit" placeholder="查询">查询</button>
+        </div>
+    </div>
+</form>
+<div style="width:500px;margin:20px auto;text-align: center">
+    <table align='center' border='1' cellspacing='0'>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>age</td>
+        </tr>
+        <tr th:each="c:${page}">
+            <td th:text="${c.id}">${c.id}</td>
+            <td th:text="${c.name}">${c.name}</td>
+            <td th:text="${c.age}">${c.age}</td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+            <a th:href="@{/findall(page=0)}">[首  页]</a>
+            <a th:href="@{/findall(page=${page.number-1})}">[上一页]</a>
+            <a th:href="@{/findall(page=${page.number+1})}">[下一页]</a>
+             <a th:href="@{/findall(page=${page.totalPages-1})}">[末  页]</a>
+    </div>
+    <br/>     
+</div>
+</body>
+</html>
